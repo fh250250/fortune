@@ -69,3 +69,4 @@ group :test do
 end
 
 gem "csv"
+gem "kaminari"
