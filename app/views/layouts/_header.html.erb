@@ -1,0 +1,21 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <%= link_to "Fortune", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="header-navigation">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "康熙字典", kangxis_path, class: class_names("nav-link", { active: current_page?(kangxis_path) }) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "繁简转换", transforms_path, class: class_names("nav-link", { active: current_page?(transforms_path) }) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "五格计算", "#", class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

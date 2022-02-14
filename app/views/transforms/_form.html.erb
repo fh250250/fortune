@@ -1,0 +1,9 @@
+<%= form_with model: transform do |form| %>
+  <%= form.text_field :from, class: "form-control" %>
+  <%= form.hidden_field :config %>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
+
+<div class="border p-3">
+  <%= transform.to %>
+</div>
