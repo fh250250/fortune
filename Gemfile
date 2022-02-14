@@ -70,3 +70,4 @@ end
 
 gem "csv"
 gem "kaminari"
+gem "opencc", github: "fh250250/OpenCC", branch: "ruby"

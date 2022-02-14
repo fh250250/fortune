@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/fh250250/OpenCC.git
+  revision: 97681de8876f831987dc640ca2e9b310abe2d22e
+  branch: ruby
+  specs:
+    opencc (1.1.3)
+      ffi (~> 1.15, >= 1.15.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -90,6 +98,7 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.9.1)
@@ -232,6 +241,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  opencc!
   pg (~> 1.1)
   propshaft
   puma (~> 5.0)
