@@ -71,3 +71,4 @@ end
 gem "csv"
 gem "kaminari"
 gem "opencc", github: "fh250250/OpenCC", branch: "ruby"
+gem "rails-i18n", "~> 7.0.0"
