@@ -1,0 +1,29 @@
+<div class="row g-3">
+  <div class="col-lg-3">
+    <div class="card">
+      <div class="card-header">姓名信息</div>
+      <div class="card-body">
+        <%= form_with scope: :wuge_calc do |form| %>
+          <div class="input-group mb-3">
+            <span class="input-group-text">姓氏</span>
+            <%= form.text_field :surname, class: "form-control" %>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">名称</span>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+          <div>
+            <%= form.submit "确定", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div class="card">
+      <div class="card-header">计算结果</div>
+      <div class="card-body" id="wuge_calc_result">
+      </div>
+    </div>
+  </div>
+</div>

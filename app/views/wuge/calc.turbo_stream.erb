@@ -1,0 +1,11 @@
+<%= turbo_stream.update "wuge_calc_result" do %>
+  <% if @wuge.errors.any? %>
+    <div class="small text-danger">
+      <% @wuge.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render "wuge", wuge: @wuge %>
+  <% end %>
+<% end %>
