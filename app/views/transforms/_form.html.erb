@@ -1,9 +1,9 @@
-<%= form_with model: transform do |form| %>
-  <%= form.text_field :from, class: "form-control" %>
+<%= form_with model: transform, class: "mb-3" do |form| %>
   <%= form.hidden_field :config %>
-  <%= form.submit class: "btn btn-primary" %>
+  <div class="input-group">
+    <%= form.text_field :from, class: "form-control" %>
+    <%= form.submit "转换", class: "btn btn-outline-primary" %>
+  </div>
 <% end %>
 
-<div class="border p-3">
-  <%= transform.to %>
-</div>
+<%= tag.div id: "#{transform.config}_result" %>

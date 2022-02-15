@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html>
 <head>
   <title>Fortune</title>
   <meta charset="utf-8">
@@ -11,10 +11,10 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-<body class="d-flex flex-column h-100">
+<body>
   <%= render "layouts/header" %>
 
-  <main class="flex-shrink-0 py-3">
+  <main class="layout-main py-4">
     <div class="container">
       <%= yield %>
     </div>

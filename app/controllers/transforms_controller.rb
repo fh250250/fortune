@@ -6,6 +6,14 @@ class TransformsController < ApplicationController
   end
 
   def create
+    @transform = Transform.new transform_params
+    @transform.save
   end
+
+  private
+
+    def transform_params
+      params.require(:transform).permit(:from, :config)
+    end
 
 end

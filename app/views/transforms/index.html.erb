@@ -1,2 +1,10 @@
-<%= render "form", transform: @s2t_transform %>
-<%= render "form", transform: @t2s_transform %>
+<div class="row">
+  <div class="col-md-6">
+    <h4>简转繁</h4>
+    <%= render "form", transform: @s2t_transform %>
+  </div>
+  <div class="col-md-6">
+    <h4>繁转简</h4>
+    <%= render "form", transform: @t2s_transform %>
+  </div>
+</div>

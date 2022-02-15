@@ -1,0 +1,11 @@
+<%= turbo_stream.update "#{@transform.config}_result" do %>
+  <% if @transform.errors.any? %>
+    <div class="small text-danger">
+      <% @transform.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="fs-1"><%= @transform.to %></div>
+  <% end %>
+<% end %>
