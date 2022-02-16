@@ -4,74 +4,64 @@ class Wuge
 
   attr_accessor :surname, :name
   attr_reader :traditional_surname, :traditional_name
-  attr_reader :tian, :ren, :di, :wai, :zong
+  attr_reader :surname_strokes, :name_strokes
 
   validates :surname, :name, presence: true
+
+  def initialize(attributes = {})
+    super
+    prepare_data
+  end
+
+  def tian
+    if @surname_strokes.size > 1
+      @surname_strokes.sum
+    else
+      @surname_strokes.first + 1
+    end
+  end
+
+  def ren
+    @surname_strokes.last + @name_strokes.first
+  end
+
+  def di
+    if @name_strokes.size > 1
+      @name_strokes.sum
+    else
+      @name_strokes.first + 1
+    end
+  end
+
+  def wai
+    tian + di - ren
+  end
+
+  def zong
+    @surname_strokes.sum + @name_strokes.sum
+  end
 
   def full_name
     "#{@surname}#{@name}"
   end
 
-  def full_traditional_name
+  def traditional_full_name
     "#{@traditional_surname}#{@traditional_name}"
-  end
-
-  def calc
-    return false unless valid?
-    s2t_convert
-    calc_tian
-    calc_ren
-    calc_di
-    calc_wai
-    calc_zong
-    true
-  rescue ActiveRecord::RecordNotFound
-    @errors.add :base, "康熙字典未查到"
-    false
-  rescue OpenCC::Error
-    @errors.add :base, "繁简转换错误"
-    false
   end
 
   private
 
-    def s2t_convert
+    def prepare_data
+      return unless valid?
       cc = OpenCC.create :s2t
-      @traditional_surname = cc.convert @surname
-      @traditional_name = cc.convert @name
-    end
-
-    def find_kangxi_strokes(str)
-      kx = Kangxi.find_by! codepoint: str.ord
-      kx.strokes
-    end
-
-    def calc_tian
-      if @traditional_surname.size > 1
-        @tian = @traditional_surname.chars.sum { |c| find_kangxi_strokes c }
-      else
-        @tian = find_kangxi_strokes(@traditional_surname) + 1
-      end
-    end
-
-    def calc_ren
-      @ren = find_kangxi_strokes(@traditional_surname.last) + find_kangxi_strokes(@traditional_name.first)
-    end
-
-    def calc_di
-      if @traditional_name.size > 1
-        @di = @traditional_name.chars.sum { |c| find_kangxi_strokes c }
-      else
-        @di = find_kangxi_strokes(@traditional_name) + 1
-      end
-    end
-
-    def calc_wai
-      @wai = @tian + @di - @ren
-    end
-
-    def calc_zong
-      @zong = full_traditional_name.chars.sum { |c| find_kangxi_strokes c }
+      @traditional_surname = cc.convert(@surname)
+      @traditional_name    = cc.convert(@name)
+      @surname_strokes     = @traditional_surname.chars.map { |c| Kangxi.find_by!(codepoint: c.ord).strokes }
+      @name_strokes        = @traditional_name.chars.map    { |c| Kangxi.find_by!(codepoint: c.ord).strokes }
+    rescue ActiveRecord::RecordNotFound
+      @errors.add :base, "康熙字典未查到"
+    rescue OpenCC::Error
+      @errors.add :base, "繁简转换错误"
     end
 
 end

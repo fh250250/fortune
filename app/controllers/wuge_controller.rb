@@ -5,7 +5,6 @@ class WugeController < ApplicationController
 
   def calc
     @wuge = Wuge.new calc_params
-    @wuge.calc
   end
 
   private

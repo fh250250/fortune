@@ -1,9 +1,53 @@
 <div class="wuge">
-  <p>简体: <%= wuge.full_name %></p>
-  <p>繁体: <%= wuge.full_traditional_name %></p>
-  <p>天格: <%= wuge.tian %></p>
-  <p>人格: <%= wuge.ren %></p>
-  <p>地格: <%= wuge.di %></p>
-  <p>外格: <%= wuge.wai %></p>
-  <p>总格: <%= wuge.zong %></p>
+  <div class="position-relative">
+    <div class="position-relative">
+      <% wuge.traditional_surname.each_char.with_index do |char, idx| %>
+        <div class="char">
+          <div class="hanzi"><%= char %></div>
+          <div class="strokes">
+            <% if wuge.surname.size > 1 %>
+              <span><%= wuge.surname_strokes[idx] %></span>
+            <% else %>
+              <span class="mb-auto">1</span>
+              <span><%= wuge.surname_strokes[idx] %></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="<%= class_names "annotation", { multi: wuge.surname.size > 1 } %>">
+        天格 <%= wuge.tian %>
+      </div>
+    </div>
+
+    <div class="<%= class_names "annotation", "ren", { multi_top: wuge.surname.size > 1, multi_bottom: wuge.name.size > 1 } %>">
+      人格 <%= wuge.ren %>
+    </div>
+
+    <div class="position-relative">
+      <% wuge.traditional_name.each_char.with_index do |char, idx| %>
+        <div class="char">
+          <div class="hanzi"><%= char %></div>
+          <div class="strokes">
+            <% if wuge.name.size > 1 %>
+              <span><%= wuge.name_strokes[idx] %></span>
+            <% else %>
+              <span class="mb-auto"><%= wuge.name_strokes[idx] %></span>
+              <span>1</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="<%= class_names "annotation", { multi: wuge.name.size > 1 } %>">
+        地格 <%= wuge.di %>
+      </div>
+    </div>
+
+    <div class="annotation wai">
+      外格 <%= wuge.wai %>
+    </div>
+  </div>
+
+  <div class="zong">
+    总格 <%= wuge.zong %>
+  </div>
 </div>
