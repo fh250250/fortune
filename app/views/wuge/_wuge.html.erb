@@ -15,12 +15,12 @@
         </div>
       <% end %>
       <div class="<%= class_names "annotation", { multi: wuge.surname.size > 1 } %>">
-        天格 <%= wuge.tian %>
+        天格 <%= wuge.tian %> <%= wuge.tian_wuxing %>
       </div>
     </div>
 
     <div class="<%= class_names "annotation", "ren", { multi_top: wuge.surname.size > 1, multi_bottom: wuge.name.size > 1 } %>">
-      人格 <%= wuge.ren %>
+      人格 <%= wuge.ren %> <%= wuge.ren_wuxing %>
     </div>
 
     <div class="position-relative">
@@ -38,16 +38,16 @@
         </div>
       <% end %>
       <div class="<%= class_names "annotation", { multi: wuge.name.size > 1 } %>">
-        地格 <%= wuge.di %>
+        地格 <%= wuge.di %> <%= wuge.di_wuxing %>
       </div>
     </div>
 
     <div class="annotation wai">
-      外格 <%= wuge.wai %>
+      外格 <%= wuge.wai %> <%= wuge.wai_wuxing %>
     </div>
   </div>
 
   <div class="zong">
-    总格 <%= wuge.zong %>
+    总格 <%= wuge.zong %> <%= wuge.zong_wuxing %>
   </div>
 </div>

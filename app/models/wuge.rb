@@ -49,6 +49,12 @@ class Wuge
     "#{@traditional_surname}#{@traditional_name}"
   end
 
+  %w[tian ren di wai zong].each do |n|
+    define_method "#{n}_wuxing".to_sym do
+      calc_wuxing send(n)
+    end
+  end
+
   private
 
     def prepare_data
@@ -62,6 +68,16 @@ class Wuge
       @errors.add :base, "康熙字典未查到"
     rescue OpenCC::Error
       @errors.add :base, "繁简转换错误"
+    end
+
+    def calc_wuxing(number)
+      case number % 10
+      when 1, 2 then "木"
+      when 3, 4 then "火"
+      when 5, 6 then "土"
+      when 7, 8 then "金"
+      when 9, 0 then "水"
+      end
     end
 
 end
