@@ -1,5 +1,13 @@
 class Wuge
 
+  @@wuge_numbers = File.readlines(Rails.root.join("vendor/data/wuge_shuli.txt").to_s)
+    .reduce Hash.new do |hash, line|
+      m = line.match /^.+?(\d+).+：（(.+?)）(.+)（(.+)）/
+      number = m[1].to_i
+      hash[number] = { number: number, name: m[2], desc: m[3], level: m[4] }
+      hash
+    end.freeze
+
   include ActiveModel::API
 
   attr_accessor :surname, :name
@@ -53,6 +61,10 @@ class Wuge
     define_method "#{n}_wuxing".to_sym do
       calc_wuxing send(n)
     end
+
+    define_method "#{n}_shuli".to_sym do
+      calc_shuli send(n)
+    end
   end
 
   private
@@ -78,6 +90,11 @@ class Wuge
       when 7, 8 then "金"
       when 9, 0 then "水"
       end
+    end
+
+    def calc_shuli(number)
+      n = number % 81
+      @@wuge_numbers[n == 0 ? 81 : n]
     end
 
 end

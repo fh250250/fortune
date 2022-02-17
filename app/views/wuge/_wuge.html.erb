@@ -15,12 +15,16 @@
         </div>
       <% end %>
       <div class="<%= class_names "annotation", { multi: wuge.surname.size > 1 } %>">
-        天格 <%= wuge.tian %> <%= wuge.tian_wuxing %>
+        [天格 <%= wuge.tian %>]
+        <span class="mx-3"><%= wuge.tian_wuxing %></span>
+        [<%= wuge.tian_shuli[:name] %> - <%= wuge.tian_shuli[:level] %>]
       </div>
     </div>
 
     <div class="<%= class_names "annotation", "ren", { multi_top: wuge.surname.size > 1, multi_bottom: wuge.name.size > 1 } %>">
-      人格 <%= wuge.ren %> <%= wuge.ren_wuxing %>
+      [人格 <%= wuge.ren %>]
+      <span class="mx-3"><%= wuge.ren_wuxing %></span>
+      [<%= wuge.ren_shuli[:name] %> - <%= wuge.ren_shuli[:level] %>]
     </div>
 
     <div class="position-relative">
@@ -38,16 +42,31 @@
         </div>
       <% end %>
       <div class="<%= class_names "annotation", { multi: wuge.name.size > 1 } %>">
-        地格 <%= wuge.di %> <%= wuge.di_wuxing %>
+        [地格 <%= wuge.di %>]
+        <span class="mx-3"><%= wuge.di_wuxing %></span>
+        [<%= wuge.di_shuli[:name] %> - <%= wuge.di_shuli[:level] %>]
       </div>
     </div>
 
     <div class="annotation wai">
-      外格 <%= wuge.wai %> <%= wuge.wai_wuxing %>
+      [外格 <%= wuge.wai %>]
+      <span class="mx-3"><%= wuge.wai_wuxing %></span>
+      [<%= wuge.wai_shuli[:name] %> - <%= wuge.wai_shuli[:level] %>]
     </div>
   </div>
 
   <div class="zong">
-    总格 <%= wuge.zong %> <%= wuge.zong_wuxing %>
+    [总格 <%= wuge.zong %>]
+    <span class="mx-3"><%= wuge.zong_wuxing %></span>
+    [<%= wuge.zong_shuli[:name] %> - <%= wuge.zong_shuli[:level] %>]
   </div>
 </div>
+
+<h4>数理</h4>
+<% %w[tian ren di wai zong].each do |ge| %>
+  <p>
+    <strong>[<%= wuge.send("#{ge}_shuli".to_sym)[:name] %>]</strong> -
+    <%= wuge.send("#{ge}_shuli".to_sym)[:desc] %>
+    (<%= wuge.send("#{ge}_shuli".to_sym)[:level] %>)
+  </p>
+<% end %>
