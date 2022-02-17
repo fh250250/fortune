@@ -1,19 +1,5 @@
 class Wuge
 
-  @@wuge_numbers = File.readlines(Rails.root.join("vendor/data/wuge_shuli.txt").to_s)
-    .reduce Hash.new do |hash, line|
-      m = line.match /^.+?(\d+).+：（(.+?)）(.+)（(.+)）/
-      number = m[1].to_i
-      hash[number] = { number: number, name: m[2], desc: m[3], level: m[4] }
-      hash
-    end.freeze
-
-  @@sancai_configs = CSV.table(Rails.root.join("vendor/data/sancai.csv"))
-    .reduce Hash.new do |hash, row|
-      hash[row[:element]] = row.to_h
-      hash
-    end.freeze
-
   include ActiveModel::API
 
   attr_accessor :surname, :name
@@ -75,7 +61,7 @@ class Wuge
 
   def sancai
     element = %w[tian ren di].map { |n| send("#{n}_wuxing") }.join
-    @@sancai_configs[element]
+    WugeConstant::SANCAI[element]
   end
 
   private
@@ -105,7 +91,7 @@ class Wuge
 
     def calc_shuli(number)
       n = number % 81
-      @@wuge_numbers[n == 0 ? 81 : n]
+      WugeConstant::SHULI[n == 0 ? 81 : n]
     end
 
 end
