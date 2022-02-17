@@ -62,11 +62,29 @@
   </div>
 </div>
 
-<h4>数理</h4>
-<% %w[tian ren di wai zong].each do |ge| %>
-  <p>
-    <strong>[<%= wuge.send("#{ge}_shuli".to_sym)[:name] %>]</strong> -
-    <%= wuge.send("#{ge}_shuli".to_sym)[:desc] %>
-    (<%= wuge.send("#{ge}_shuli".to_sym)[:level] %>)
-  </p>
-<% end %>
+<div class="row small mb-4">
+  <div class="col-md-6">
+    <h4>数理</h4>
+    <% %w[tian ren di wai zong].each do |ge| %>
+      <p>
+        <strong>[<%= wuge.send("#{ge}_shuli".to_sym)[:name] %>]</strong> -
+        <%= wuge.send("#{ge}_shuli".to_sym)[:desc] %>
+        (<%= wuge.send("#{ge}_shuli".to_sym)[:level] %>)
+      </p>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h4>三才</h4>
+    <p class="fw-bold">[<%= wuge.sancai[:element] %>] - <%= wuge.sancai[:level] %></p>
+    <p><%= wuge.sancai[:explain] %></p>
+  </div>
+</div>
+
+<div class="small">
+  <h4>五格释义</h4>
+  <p><strong>[天格]</strong> 天格由您的姓氏决定的，姓是祖辈流传下来的。它的数理对人生并无直接的影响。因此，天格的吉凶数理不用重视。在测名字的时候，也会有天格的数理吉凶解释，那是对这个数字的解释，本身无太大意义。</p>
+  <p><strong>[人格]</strong> 人格十分重要，是这个名字的中心、精髓﹗人格的吉凶，对人的影响很大，就如四柱当是日主一样，是判断名字好坏吉凶的一个标准。</p>
+  <p><strong>[地格]</strong> 地格与人格有密切的关系，主要影响人年轻时的命运，地格也比较重要。其数理吉凶，也代表与子女、部属、晚辈的关係。</p>
+  <p><strong>[外格]</strong> 外格通常指和社会上的关系的融洽程度。对人生的作用不是很大，在预测当中也很少去用。外格的数理不用重点去看。</p>
+  <p><strong>[总格]</strong> 判断名字的吉凶，一般先看总格，再看人格。总格对人的晚运和一生运势均有影响。总格就如植物的根，根好则枝繁叶茂。因此，名字吉凶一定要看总格。</p>
+</div>

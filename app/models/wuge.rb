@@ -8,6 +8,12 @@ class Wuge
       hash
     end.freeze
 
+  @@sancai_configs = CSV.table(Rails.root.join("vendor/data/sancai.csv"))
+    .reduce Hash.new do |hash, row|
+      hash[row[:element]] = row.to_h
+      hash
+    end.freeze
+
   include ActiveModel::API
 
   attr_accessor :surname, :name
@@ -65,6 +71,11 @@ class Wuge
     define_method "#{n}_shuli".to_sym do
       calc_shuli send(n)
     end
+  end
+
+  def sancai
+    element = %w[tian ren di].map { |n| send("#{n}_wuxing") }.join
+    @@sancai_configs[element]
   end
 
   private
