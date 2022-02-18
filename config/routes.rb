@@ -9,4 +9,7 @@ Rails.application.routes.draw do
     post "calc", to: "wuge#calc"
   end
 
+  get "makename", to: "makename#index"
+  post "makename", to: "makename#make"
+
 end

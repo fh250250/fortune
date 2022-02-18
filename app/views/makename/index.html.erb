@@ -1,0 +1,17 @@
+<%= form_with scope: :makename, class: "mb-4" do |form| %>
+  <div class="row">
+    <div class="col-md-6 col-lg-4">
+      <div class="input-group">
+        <span class="input-group-text">姓氏</span>
+        <%= form.text_field :surname, class: "form-control" %>
+        <%= form.submit "确定", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="card">
+  <div class="card-header">计算结果</div>
+  <div class="card-body" id="makename_result">
+  </div>
+</div>

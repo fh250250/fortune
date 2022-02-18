@@ -1,0 +1,11 @@
+<%= turbo_stream.update "makename_result" do %>
+  <% if @maker.errors.any? %>
+    <div class="small text-danger">
+      <% @maker.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% else %>
+    TODO
+  <% end %>
+<% end %>

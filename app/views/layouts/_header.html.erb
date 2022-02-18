@@ -8,6 +8,9 @@
       <div class="collapse navbar-collapse" id="header-navigation">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
+            <%= link_to "取名", makename_path, class: class_names("nav-link", { active: current_page?(makename_path) }) %>
+          </li>
+          <li class="nav-item">
             <%= link_to "五格剖象", wuge_calc_path, class: class_names("nav-link", { active: current_page?(wuge_calc_path) }) %>
           </li>
           <li class="nav-item">
